@@ -1,26 +1,342 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@plugin "@tailwindcss/typography";
+
+@theme {
+	--font-sans: var(--font-roboto-mono), sans-serif;
+	--color-black: var(--black);
+	--color-white: var(--white);
+	--color-primary: var(--primary);
+	--color-secondary: var(--secondary);
+	--color-secondary-dark: var(--secondary-dark);
+	--color-accent: var(--accent);
+	--color-accent-dark: var(--accent-dark);
+	--color-bg-primary: var(--bg-primary);
+	--color-bg-secondary: var(--bg-secondary);
+
+	--color-success: var(--success);
+	--color-unsuccess: var(--unsuccess);
+	--color-error: var(--error);
+
+	--animate-shimmer: shimmer 1.5s infinite;
+	--bg-gradient-shimmer: linear-gradient(
+		90deg,
+		transparent 0%,
+		rgba(255, 255, 255, 0.3) 50%,
+		transparent 100%
+	);
+	--animate-spin-custom: spin-custom 0.5s linear infinite;
+	--animate-shadow-custom: shadow-custom 0.5s linear infinite;
+	--animate-rotation: rotation 2s linear infinite;
+
+	--breakpoint-xs: 30rem;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--black: #000;
+	--white: #fff;
+	--primary: #1f1f1f;
+	--secondary: #4a5565;
+	--secondary-dark: #2f2f2f;
+	--accent: #00474d;
+	--accent-dark: #003a3e;
+	--bg-primary: #f2ede7;
+	--bg-secondary: #d6d0c2;
+
+	--success: #23d164;
+	--unsuccess: #e78282;
+	--error: #c01e1e;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@layer base {
+	* {
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		width: 100%;
+		line-height: normal;
+		min-height: 100vh;
+		background-color: var(--white);
+		color: var(--primary);
+		font-size: 0.875rem;
+		display: flex;
+		flex-direction: column;
+	}
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@layer components {
+	button,
+	.btn {
+		cursor: pointer;
+		font-family: var(--font-roboto-mono), sans-serif;
+		letter-spacing: 0.8px;
+		background-color: var(--accent);
+		border-radius: 16px;
+		color: var(--white);
+		padding: 10px 20px;
+	}
+
+	button:hover,
+	.btn:hover {
+		background-color: var(--color-accent-dark);
+		transform: translateY(1px);
+		transition: all 0.2s ease-in-out;
+	}
+
+	button.btn-transparent {
+		background: transparent;
+		color: var(--accent);
+		padding: 0;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: var(--accent);
+	}
+
+	input,
+	textarea {
+		border: 1px solid var(--accent);
+		border-radius: 12px;
+		padding: 8px 12px;
+	}
+
+	input::placeholder,
+	textarea::placeholder {
+		color: rgba(0, 0, 0, 0.4);
+	}
+
+	input:focus,
+	input:focus-visible,
+	textarea:focus,
+	textarea:focus-visible {
+		outline: none;
+	}
+
+	.react-colorful {
+		width: 150px !important;
+		height: 80px !important;
+	}
+
+	.react-colorful__saturation {
+		border-bottom-width: 6px !important;
+	}
+
+	.react-colorful__hue {
+		height: 8px !important;
+	}
+
+	.react-colorful__pointer {
+		width: 14px !important;
+		height: 14px !important;
+	}
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+
+	.scrollbar::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	.scrollbar::-webkit-scrollbar-track {
+		border-radius: 6px;
+		background: #fff;
+	}
+
+	.scrollbar::-webkit-scrollbar-thumb {
+		background: var(--accent);
+		border-radius: 6px;
+	}
+
+	.scrollbar::-webkit-scrollbar-thumb:hover {
+		background: var(--accent-dark);
+	}
+
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
+
+	.scrollbar-hide {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+}
+
+* {
+	font-family: var(--font-roboto-mono), sans-serif;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+#nprogress .bar {
+	background: var(--accent) !important;
+}
+
+#nprogress .peg {
+	box-shadow:
+		0 0 10px var(--accent),
+		0 0 5px var(--accent) !important;
+}
+
+#nprogress .spinner-icon {
+	border-top-color: var(--accent) !important;
+	border-left-color: var(--accent) !important;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+@keyframes shimmer {
+	0% {
+		transform: translateX(-100%);
+	}
+
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes spin-custom {
+	17% {
+		border-bottom-right-radius: 3px;
+	}
+
+	25% {
+		transform: translateY(9px) rotate(22.5deg);
+	}
+
+	50% {
+		transform: translateY(18px) scale(1, 0.9) rotate(45deg);
+		border-bottom-right-radius: 40px;
+	}
+
+	75% {
+		transform: translateY(9px) rotate(67.5deg);
+	}
+
+	100% {
+		transform: translateY(0) rotate(90deg);
+	}
+}
+
+@keyframes shadow-custom {
+	0%,
+	100% {
+		transform: scale(1, 1);
+	}
+
+	50% {
+		transform: scale(1.2, 1);
+	}
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.prose :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+	margin-bottom: 10px !important;
+	margin-top: 10px !important;
+}
+
+.prose
+	:where(.prose > :first-child):not(
+		:where([class~="not-prose"], [class~="not-prose"] *)
+	) {
+	margin-top: 0 !important;
+}
+
+.ProseMirror table {
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 100%;
+	margin: 0;
+	overflow: hidden;
+}
+
+.ProseMirror td,
+.ProseMirror th {
+	min-width: 1em;
+	border: 1px solid #000;
+	padding: 4px 8px;
+	vertical-align: top;
+	box-sizing: border-box;
+	position: relative;
+	height: auto;
+	line-height: 1.4;
+}
+
+.ProseMirror tr {
+	height: auto;
+}
+
+.ProseMirror th {
+	font-weight: bold;
+	text-align: left;
+	background-color: #d2dfe0;
+}
+
+.ProseMirror td p,
+.ProseMirror th p {
+	margin: 0;
+	line-height: 1.4;
+}
+
+.ProseMirror .selectedCell:after {
+	z-index: 2;
+	position: absolute;
+	content: "";
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(200, 200, 255, 0.4);
+	pointer-events: none;
+}
+
+.ProseMirror .column-resize-handle {
+	position: absolute;
+	right: -2px;
+	top: 0;
+	bottom: 0;
+	width: 4px;
+	z-index: 20;
+	background-color: #00474d;
+	pointer-events: none;
+}
+
+.tableWrapper {
+	margin: 1em 0;
+	overflow-x: auto;
+}
+
+.resize-cursor {
+	cursor: ew-resize;
+	cursor: col-resize;
 }

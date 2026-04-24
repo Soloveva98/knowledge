@@ -1,6 +1,6 @@
-# Адаптивная База Знаний на Next.js и TypeScript с функционалом добавления/редактирования/удаления
+# База Знаний на Next.js и TypeScript с функционалом добавления/редактирования/удаления
 
-### Ссылка на сайт: <a href="https://next-project-ochre-eta.vercel.app/">Knowledge</a>
+### Ссылка на сайт: <a href="https://knowledge-ashy.vercel.app">Knowledge</a>
 
 #### :hammer_and_wrench: Стек технологий:
 <p align="left">

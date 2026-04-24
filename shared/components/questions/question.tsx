@@ -44,8 +44,8 @@ export const Question: React.FC<Props> = ({
 		queryKey: ["question", questionId],
 		queryFn: () => Api.question.get(questionId),
 		staleTime: 0,
-		// retry: 1,
-		// retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 10000),
+		retry: 1,
+		retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 10000),
 	});
 
 	const toggleMutation = useToggleStatus({

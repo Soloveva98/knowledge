@@ -43,7 +43,7 @@ export const Topic: React.FC<Props> = ({ topicId }) => {
 	} = useQuery({
 		queryKey: ["topic", topicId],
 		queryFn: () => Api.topics.get(topicId),
-		// staleTime: 0,
+		staleTime: 0,
 	});
 
 	const toggleMutation = useToggleStatus({

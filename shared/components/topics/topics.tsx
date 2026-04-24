@@ -17,8 +17,8 @@ export const Topics: React.FC = () => {
 	} = useQuery({
 		queryKey: ["topics"],
 		queryFn: Api.topics.getAll,
-		// retry: 1,
-		// retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 10000),
+		retry: 1,
+		retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 10000),
 	});
 	const { topicsOfQuestions, topicsNotFound } = appText;
 

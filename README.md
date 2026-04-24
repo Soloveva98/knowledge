@@ -1,3 +1,49 @@
+# Адаптивная База Знаний на Next.js и TypeScript с функционалом добавления/редактирования/удаления
+
+### Ссылка на сайт: <a href="https://next-project-ochre-eta.vercel.app/">Knowledge</a>
+
+#### :hammer_and_wrench: Стек технологий:
+<p align="left">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=nextjs,ts,react,tailwind,prisma,html" />
+  </a>
+</p>
+
+<p>NextJS, TypeScript, React, Zustand, TailwindCSS, Prisma, HTML5, React Query, TipTap</p>
+
+---
+#### На сайте реализовано:
+
+###### Главная страница с отображением тем вопросов:
+![](/gifs/topics.gif)
+
+###### Страница темы с отображением списка вопросов с возможностью редактирования и удаления темы:
+![](/gifs/topic.gif)
+
+###### Страница вопроса с возможностью редактирования и удаления вопроса:
+![](/gifs/topic.gif)
+
+###### Поиск по вопросам:
+![](/gifs/search.gif)
+
+###### Редактирование/добавление вопросов с полноценным форматированием текста:
+![](/gifs/edit.gif)
+
+Весь фнукицонал доступен администратору сайта.
+
+---
+### Запуск проекта:
+
+Для работы приложения в проекте должен быть .env файл с ключами: DATABASE_URL, NEXT_PUBLIC_API_URL, ADMIN_PASSWORD_HASH, ADMIN_PASSWORD_PEPPER.
+
+<ul>
+  <li> npm i в корне проекта </li>
+  <li> npx prisma generate в корне проекта </li>
+  <li> npx prisma db push в корне проекта </li>
+  <li> npm run start </li>
+</ul>
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

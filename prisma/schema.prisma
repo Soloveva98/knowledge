@@ -1,0 +1,43 @@
+generator client {
+    provider = "prisma-client"
+    output   = "../generated/prisma"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+model Topic {
+    id                Int        @id @default(autoincrement())
+    name              String     @unique
+    success           Boolean    @default(false)
+    questions         Question[]
+    stats             TopicStats?
+    createdAt         DateTime   @default(now())
+    updatedAt         DateTime   @updatedAt
+
+    @@map("topics")
+}
+
+model TopicStats {
+    topicId            Int   @id
+    topic              Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+    totalQuestions     Int   @default(0)
+    completedQuestions Int   @default(0)
+
+    @@map("topic_stats")
+}
+
+model Question {
+    id      Int     @id @default(autoincrement())
+    title   String
+    text    String  @db.Text
+    success Boolean @default(false)
+    topic   Topic   @relation(fields: [topicId], references: [id], onDelete: Cascade)
+    topicId Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("questions")
+}

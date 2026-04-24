@@ -8,6 +8,7 @@ import { ModalTop } from "./modal-top";
 import { ModalActions } from "./modal-actions";
 import { getErrorToast, getSuccessToast } from "@/shared/utils/get-toast";
 import { appText } from "@/shared/constants/app-text";
+import { Question, Topic } from "@/shared/types/types";
 
 interface Props {
 	title: string;
@@ -15,7 +16,7 @@ interface Props {
 	successMessage: string;
 	errorMessage: string;
 	closeModals: () => void;
-	mutationFn: () => Promise<void>;
+	mutationFn: () => Promise<Question | Topic>;
 	backUrl?: string;
 }
 

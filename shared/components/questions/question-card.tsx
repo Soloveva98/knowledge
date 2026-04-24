@@ -21,7 +21,7 @@ export const QuestionCard: React.FC<Props> = ({
 		<Link
 			href={`/topic/${topicId}/question/${id}`}
 			className={cn(
-				"block text-center py-2 px-5 rounded-2xl cursor-pointer",
+				"flex justify-center items-center text-center py-2 px-5 rounded-2xl cursor-pointer",
 				success ? "bg-success" : "bg-bg-primary",
 				"max-sm:text-[12px] max-sm:px-3",
 			)}

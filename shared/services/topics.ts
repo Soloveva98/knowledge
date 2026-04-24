@@ -27,7 +27,7 @@ export const update = (topicId: number, fields: Partial<Topic>) =>
 	});
 
 export const deleteTopic = (topicId: number) =>
-	request(`/api/topics/${topicId}`, {
+	request<Topic>(`/api/topics/${topicId}`, {
 		method: "DELETE",
 		credentials: "include",
 	});

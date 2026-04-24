@@ -1,4 +1,3 @@
-// middleware.ts - создай в корне проекта
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 

@@ -251,11 +251,11 @@ export type TopicStatsScalarWhereWithAggregatesInput = {
 export type TopicStatsCreateInput = {
   totalQuestions?: number
   completedQuestions?: number
-  topic?: Prisma.TopicCreateNestedOneWithoutStatsInput
+  topic: Prisma.TopicCreateNestedOneWithoutStatsInput
 }
 
 export type TopicStatsUncheckedCreateInput = {
-  topicId?: number
+  topicId: number
   totalQuestions?: number
   completedQuestions?: number
 }
@@ -273,7 +273,7 @@ export type TopicStatsUncheckedUpdateInput = {
 }
 
 export type TopicStatsCreateManyInput = {
-  topicId?: number
+  topicId: number
   totalQuestions?: number
   completedQuestions?: number
 }

@@ -38,28 +38,30 @@ export const useQuestionMutation = ({
 						topicId: selectedTopicId as number,
 					});
 		},
-		onSuccess: () => {
-			queryClient.invalidateQueries({
+		onSuccess: async () => {
+			await queryClient.invalidateQueries({
 				queryKey: ["topic", selectedTopicId],
 			});
 
 			if (editingQuestionId) {
-				queryClient.invalidateQueries({
+				await queryClient.invalidateQueries({
 					queryKey: ["question", editingQuestionId],
 				});
 
-				queryClient.invalidateQueries({
+				await queryClient.invalidateQueries({
 					queryKey: ["topic", editingTopicId],
 				});
 			}
 
-			queryClient.invalidateQueries({ queryKey: ["topics"] });
+			await queryClient.invalidateQueries({ queryKey: ["topics"] });
 
 			getSuccessToast(
 				editingQuestionId ? questionUpdated : questionAdded,
 			);
 
-			closeModals();
+			setTimeout(() => {
+				closeModals();
+			}, 100);
 		},
 		onError: (error: Error) => {
 			getErrorToast(error.message);

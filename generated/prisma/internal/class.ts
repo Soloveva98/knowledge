@@ -17,10 +17,10 @@ import type * as Prisma from "./prismaNamespace"
 
 const config: runtime.GetPrismaClientConfig = {
   "previewFeatures": [],
-  "clientVersion": "7.7.0",
-  "engineVersion": "75cbdc1eb7150937890ad5465d861175c6624711",
+  "clientVersion": "7.8.0",
+  "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
   "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Topic {\n  id        Int         @id @default(autoincrement())\n  name      String      @unique\n  success   Boolean     @default(false)\n  questions Question[]\n  stats     TopicStats?\n  createdAt DateTime    @default(now())\n  updatedAt DateTime    @updatedAt\n\n  @@map(\"topics\")\n}\n\nmodel TopicStats {\n  topicId            Int   @id @default(autoincrement())\n  topic              Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)\n  totalQuestions     Int   @default(0)\n  completedQuestions Int   @default(0)\n\n  @@map(\"topic_stats\")\n}\n\nmodel Question {\n  id      Int     @id @default(autoincrement())\n  title   String\n  text    String  @db.Text\n  success Boolean @default(false)\n  topic   Topic   @relation(fields: [topicId], references: [id], onDelete: Cascade)\n  topicId Int\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@map(\"questions\")\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Topic {\n  id        Int         @id @default(autoincrement())\n  name      String      @unique\n  success   Boolean     @default(false)\n  questions Question[]\n  stats     TopicStats?\n  createdAt DateTime    @default(now())\n  updatedAt DateTime    @updatedAt\n\n  @@map(\"topics\")\n}\n\nmodel TopicStats {\n  topicId            Int   @id\n  topic              Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)\n  totalQuestions     Int   @default(0)\n  completedQuestions Int   @default(0)\n\n  @@map(\"topic_stats\")\n}\n\nmodel Question {\n  id      Int     @id @default(autoincrement())\n  title   String\n  text    String  @db.Text\n  success Boolean @default(false)\n  topic   Topic   @relation(fields: [topicId], references: [id], onDelete: Cascade)\n  topicId Int\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@map(\"questions\")\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -180,7 +180,7 @@ export interface PrismaClient<
    * 
    * Read more in our [docs](https://www.prisma.io/docs/orm/prisma-client/queries/transactions).
    */
-  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
 
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => runtime.Types.Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<R>
 

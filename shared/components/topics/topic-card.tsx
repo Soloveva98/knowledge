@@ -26,12 +26,21 @@ export const TopicCard: React.FC<Props> = ({ id, success, name, stats }) => {
 		>
 			<p>{name}</p>
 
-			<TopicStats stats={stats} className="text-[10px] mt-1/2 mb-2" />
+			{success ? (
+				<p className="text-[12px] font-medium mt-2">100%</p>
+			) : (
+				<>
+					<TopicStats
+						stats={stats}
+						className="text-[10px] mt-1/2 mb-2"
+					/>
 
-			<ProgressBar
-				totalCount={stats.totalQuestions}
-				completedCount={stats.completedQuestions}
-			/>
+					<ProgressBar
+						totalCount={stats.totalQuestions}
+						completedCount={stats.completedQuestions}
+					/>
+				</>
+			)}
 		</Link>
 	);
 };
